@@ -23,9 +23,9 @@ else
     set32
 
 fi
-cp cp -a /root/btsync/btsync  /etc/init.d/btsync
+cp -a /root/btsync/btsync  /etc/init.d/btsync/
 chmod +x /etc/init.d/btsync
-cp cp -a /root/btsync/btsync.cfg  /opt/btsync/btsync.cfg
+cp -a /root/btsync/btsync.cfg  /opt/btsync/btsync.cfg
 
 
 #Æô¶¯
