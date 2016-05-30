@@ -1,0 +1,63 @@
+ 
+#!/bin/sh
+#
+# description: starts and stops the btsync client
+
+CONF=/opt/btsync/btsync.cfg
+PROC=/opt/btsync/btsync
+PIDFILE=/opt/btsync/btsync.pid
+
+start() {
+  PID1=$(pidof btsync)
+  if [ -z ${PID1} ]; then
+    echo -n "Starting BitTorrent Sync: "
+    ${PROC} --config ${CONF}
+  else
+    echo "BitTorrent Sync is already running at pid:${PID1}"
+  fi
+  return $?
+}  
+
+stop() {
+  echo -n "Stopping BitTorrent Sync: "
+  PID1=$(pidof btsync)
+  if [ ! -z ${PID1} ]; then
+    kill -9 ${PID1}
+    echo "OK"
+  else
+    echo "Failed"
+  fi
+  return $?
+}  
+
+status() {
+  PID1=$(pidof btsync)
+  PID2=$(cat ${PIDFILE}) 
+  echo -n "Checking BitTorrent Sync: "
+  if [ ! -z ${PID1} ] && [ "${PID1}" -eq "${PID2}" ]; then
+    echo "OK"
+  else
+    echo "Failed"
+  fi
+  return $?
+}  
+
+case "$1" in
+  start)
+   start
+  ;;
+  stop)
+    stop
+  ;;
+  restart)
+    stop
+    sleep 1
+    start
+  ;;
+  status)
+    status
+  ;;
+  *)
+    echo $"Usage: $0 {start|stop|restart|status}"
+    exit 2
+esac
