@@ -3,12 +3,12 @@
 function set32 {
 wget https://download-cdn.getsync.com/stable/linux-i386/BitTorrent-Sync_i386.tar.gz -O /tmp/btsync_i386.tar.gz
 cd /opt/btsync
-sudo tar xzf /tmp/btsync_i386.tar.gz
+tar xzf /tmp/btsync_i386.tar.gz
 }
 function set64 {
 wget https://download-cdn.getsync.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz -O /tmp/btsync_x64.tar.gz
 cd /opt/btsync
-sudo tar xzf /tmp/btsync_x64.tar.gz
+tar xzf /tmp/btsync_x64.tar.gz
 
 }
 
